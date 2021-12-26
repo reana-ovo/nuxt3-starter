@@ -1,13 +1,10 @@
 {
-    "plugins": ["prettier"],
-    "extends": ["@nuxtjs/eslint-config-typescript", "standard", "prettier"],
-    "rules": {},
-    "overrides": [
-      {
-        "files": ["./pages/**", "./layouts/**"],
-        "rules": {
-          "vue/multi-word-component-names": "off"
-        }
-      }
-    ]
+  "env": {
+    "vue/setup-compiler-macros": true
+  },
+  "plugins": ["prettier"],
+  "extends": ["@nuxtjs/eslint-config-typescript", "prettier"],
+  "rules": {
+    "vue/multi-word-component-names": "off"
   }
+}
