@@ -1,7 +1,7 @@
 ## 安装 nuxt 3
 
 ```sh
-npx nuxi init nuxt3-starter
+npx nuxi init nuxt3-starter // replace `nuxt3-starter` with your app name
 cd nuxt3-starter
 yarn install
 yarn build
@@ -22,7 +22,7 @@ commitizen init cz-conventional-changelog --yarn --dev --exact
 ## 添加 Eslint 支持
 
 ```sh
-yarn add -D eslint @nuxtjs/eslint-config-typescript
+yarn add -D eslint @nuxtjs/eslint-config-typescript eslint-plugin-nuxt
 ```
 
 
@@ -41,17 +41,18 @@ yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
 
 ```json
 {
+  "env": {
+  	"vue/setup-compiler-macros": true
+  },
   "plugins": ["prettier"],
-  "extends": ["@nuxtjs/eslint-config-typescript", "standard", "prettier"],
-  "rules": {},
-  "overrides": [
-    {
-      "files": ["./pages/**", "./layouts/**"],
-      "rules": {
-        "vue/multi-word-component-names": "off"
-      }
-    }
-  ]
+  "extends": [
+    "@nuxtjs/eslint-config-typescript",
+    "plugin:nuxt/recommended",
+    "prettier"
+  ],
+  "rules": {
+  	"vue/multi-word-component-names": "off"
+  }
 }
 ```
 
@@ -164,10 +165,18 @@ import './assets/css/tailwind.css'
 
 
 
-## 添加 Stylus 支持
+## 添加 Sass 支持
 
 ```sh
-yarn add -D stylus
+yarn add -D sass
+```
+
+
+
+## 添加类型检查
+
+```sh
+yarn add -D vue-tsc
 ```
 
 
@@ -179,7 +188,7 @@ yarn add -D stylus
   "scripts": {
     // ...
     "lint": "eslint --fix --ext .vue,.ts,.tsx,.js,.mjs .",
-    "type-check": "npx vue-tsc --noEmit",
+    "type-check": "vue-tsc --noEmit",
     "commit": "yarn type-check && yarn lint && git add . && git cz"
   },
 // ...
@@ -201,15 +210,15 @@ csstools.postcss
 DavidAnson.vscode-markdownlint
 dbaeumer.vscode-eslint
 esbenp.prettier-vscode
+github.copilot
 hollowtree.vue-snippets
 jcbuisson.vue
 johnsoncodehk.volar
 johnsoncodehk.vscode-typescript-vue-plugin
 MS-CEINTL.vscode-language-pack-zh-hans
-octref.vetur
 steoates.autoimport
 streetsidesoftware.code-spell-checker
-sysoev.language-stylus
+syler.sass-indented
 TabNine.tabnine-vscode
 vivaxy.vscode-conventional-commits
 xyz.local-history
